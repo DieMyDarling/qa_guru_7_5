@@ -1,4 +1,5 @@
 import os
+import time
 
 from selene.api import *
 
@@ -11,7 +12,7 @@ def test_fill_form(open_browser):
     browser.element('#lastName').should(be.blank).type('TestLastName')
     browser.element('#userEmail').should(be.blank).type('test@gmail.com')
     browser.element('[for="gender-radio-1"]').click()
-    browser.element('#userNumber').should(be.blank).type('+79271234567')
+    browser.element('#userNumber').should(be.blank).type('1234567890')
     browser.element('#dateOfBirthInput').click()
     browser.element(".react-datepicker__month-select>option[value='1']").click()
     browser.element(".react-datepicker__year-select>option[value='1999']").click()
@@ -24,14 +25,13 @@ def test_fill_form(open_browser):
     browser.element('#react-select-4-input').type('delhi').press_enter()
     browser.element('#submit').press_enter()
     browser.element('#example-modal-sizes-title-lg').should(have.text('Thanks for submitting the form'))
-    browser.element('.table').should(have.text('test_name test_lastName')
-                                     .and_(have.text('test@mail.com'))
-                                     .and_(have.text('Male'))
-                                     .and_(have.text('1234567890'))
-                                     .and_(have.text('19 January,1999'))
-                                     .and_(have.text('Maths'))
-                                     .and_(have.text('Music'))
-                                     .and_(have.text('cat.png'))
-                                     .and_(have.text('test'))
-                                     .and_(have.text('NCR Delhi')))
-    print('Test finished successfully')
+    browser.element('.table').should(have.text('TestFirstName TestLastName'))
+    browser.element('.table').should(have.text('test@gmail.com'))
+    browser.element('.table').should(have.text('Male'))
+    browser.element('.table').should(have.text('1234567890'))
+    browser.element('.table').should(have.text('19 February,1999'))
+    browser.element('.table').should(have.text('Maths'))
+    browser.element('.table').should(have.text('Music'))
+    browser.element('.table').should(have.text('bat.png'))
+    browser.element('.table').should(have.text('test'))
+    browser.element('.table').should(have.text('NCR Delhi'))
